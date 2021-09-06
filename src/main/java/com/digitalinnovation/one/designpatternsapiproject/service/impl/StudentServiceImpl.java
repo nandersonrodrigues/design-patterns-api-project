@@ -6,9 +6,11 @@ import com.digitalinnovation.one.designpatternsapiproject.repository.StudentRepo
 import com.digitalinnovation.one.designpatternsapiproject.repository.UniversityRepository;
 import com.digitalinnovation.one.designpatternsapiproject.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+@Service
 public class StudentServiceImpl implements StudentService {
 
     @Autowired
@@ -41,7 +43,7 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public void deletar(Long id) {
+    public void deleteStudent(Long id) {
         studentRepository.deleteById(id);
     }
 }
