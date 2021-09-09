@@ -15,8 +15,6 @@ public class StudentServiceImpl implements StudentService {
 
     @Autowired
     private StudentRepository studentRepository;
-    @Autowired
-    private UniversityRepository universityRepository;
 
     @Override
     public Iterable<Student> searchAll() {
@@ -35,10 +33,10 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public void updateStudent(Long id, Student student) {
-        Optional<Student> new_student = studentRepository.findById(id);
-        if (new_student.isPresent()) {
-            studentRepository.save(student);
+    public void updateStudent(Long id, Student new_student) {
+        Optional<Student> student = studentRepository.findById(id);
+        if (student.isPresent()) {
+            studentRepository.save(new_student);
         }
     }
 
