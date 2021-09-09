@@ -1,5 +1,7 @@
 package com.digitalinnovation.one.designpatternsapiproject.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -11,10 +13,14 @@ public class University {
     private Long id;
     private String name;
     private String country;
-    @OneToMany(mappedBy = "university", cascade = CascadeType.ALL)
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "university")
     private List<Student> students;
 
-    public University() {}
+    public University() {
+
+    }
 
     public University(String name, String country) {
         this.name = name;
@@ -47,6 +53,10 @@ public class University {
 
     public List<Student> getStudents() {
         return students;
+    }
+
+    public void setStudent(Student student) {
+        this.students.add(student);
     }
 
     public void setStudents(List<Student> students) {
