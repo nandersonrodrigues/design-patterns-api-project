@@ -34,9 +34,11 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public void updateStudent(Long id, Student new_student) {
-        Optional<Student> student = studentRepository.findById(id);
-        if (student.isPresent()) {
-            studentRepository.save(new_student);
+        Optional<Student> old_student = studentRepository.findById(id);
+        if (old_student.isPresent()) {
+            Student student = old_student.get();
+            student = new_student;
+            studentRepository.save(student);
         }
     }
 
