@@ -36,10 +36,13 @@ public class UniversityServiceImpl implements UniversityService {
     }
 
     @Override
-    public void updateUniversity(Long id, University new_university) {
-        Optional<University> university = universityRepository.findById(id);
-        if (university.isPresent()) {
-            universityRepository.save(new_university);
+    public void updateUniversity(Long id, University university) {
+        Optional<University> university_in_db = universityRepository.findById(id);
+        if (university_in_db.isPresent()) {
+            university_in_db.get().setName(university.getName());
+            university_in_db.get().setCountry(university.getCountry());
+            university_in_db.get().setStudents(university.getStudents());
+            universityRepository.save(university_in_db.get());
         }
     }
 
